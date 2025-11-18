@@ -2,7 +2,6 @@ package fr.moviefinder;
 
 import fr.moviefinder.dto.ActorDTO;
 import fr.moviefinder.dto.MovieDTO;
-import fr.moviefinder.entity.Actor;
 import fr.moviefinder.entity.Genre;
 import fr.moviefinder.entity.Movie;
 import fr.moviefinder.repository.ActorRepository;
@@ -48,16 +47,13 @@ class MovieControllerTest {
     @DisplayName("POST should create movie and return 201")
     void createMovie_ShouldReturn201WithMovieDTO() {
         // Given
-        Actor actor = actorRepository.save(Actor.builder()
-                .firstname("Mark").lastname("Hamill")
-                .createdAt(LocalDateTime.now()).build()).block();
 
         MovieDTO request = MovieDTO.builder()
                 .name("Star Wars IV")
                 .genre(Genre.SCIENCE_FICTION)
                 .publication(LocalDate.of(1977, 5, 25))
                 .actors(List.of(ActorDTO.builder()
-                        .id(actor.getId()).firstname("Mark").lastname("Hamill").build()))
+                        .id(1L).firstname("Mark").lastname("Hamill").build()))
                 .build();
 
         // When & Then

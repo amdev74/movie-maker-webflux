@@ -112,6 +112,6 @@ public class MovieServiceImpl implements MovieService {
     private Flux<Actor> getOrCreateActors(List<ActorDTO> actors) {
         return Flux.fromIterable(actors)
                 .flatMap(actor -> actorRepository.findById(actor.id())
-                        .switchIfEmpty(actorRepository.save(actorMapper.toEntity(actor))));
+                        .switchIfEmpty(actorRepository.save(Actor.builder().firstname(actor.firstname()).lastname(actor.lastname()).build())));
     }
 }
